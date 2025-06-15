@@ -1,0 +1,28 @@
+namespace: login-app
+image:
+  repository: mariadb
+  tag: latest
+  pullPolicy: IfNotPresent
+
+persistence:
+  enabled: true
+  storageClass: "-"
+  size: 1Gi
+  existingClaim: mariadb-pvc
+
+service:
+  name: mariadb
+  type: ClusterIP
+  port: 3306
+
+database:
+  name: mysql
+  user: user
+  passwordSecret:
+    name: mariadb-passwords
+    key: password
+  rootPasswordSecret:
+    name: mariadb-root-password
+    key: root-password
+
+replicaCount: 1
