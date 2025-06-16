@@ -19,5 +19,5 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Generate selector labels for the deployment.
 */}}
 {{- define "mariadb.selectorLabels" -}}
-app: {{ include "mariadb.fullname" . }}
+{{- dict "app" (include "mariadb.fullname" .) | toYaml }}
 {{- end -}}
