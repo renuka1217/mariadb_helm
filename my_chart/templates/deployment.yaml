@@ -4,20 +4,20 @@ metadata:
   name: {{ include "mariadb.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels: 
-    {{ include "mariadb.labels" . | toYaml | nindent 4 }}
+    {{- include "mariadb.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{ include "mariadb.selectorLabels" . | toYaml | nindent 6 }}
+      {{- include "mariadb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{ include "mariadb.selectorLabels" . | toYaml | nindent 8 }}
+        {{- include "mariadb.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: mariadb
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 3306
