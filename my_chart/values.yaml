@@ -21,8 +21,14 @@ database:
   passwordSecret:
     name: mariadb-passwords
     key: password
+    value: user
   rootPasswordSecret:
     name: mariadb-root-password
-    key: root-password
+    key: MARIADB_ROOT_PASSWORD
+    value: root
 
 replicaCount: 1
+secrets:
+  root:
+    name: mariadb-root-password
+    password: root
