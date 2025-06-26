@@ -12,8 +12,9 @@ persistence:
 
 service:
   name: mariadb
-  type: ClusterIP
+  type: NodePort
   port: 3306
+  nodePort: 30306
 
 database:
   name: mysql
@@ -32,3 +33,4 @@ secrets:
   root:
     name: mariadb-root-password
     password: root
+
